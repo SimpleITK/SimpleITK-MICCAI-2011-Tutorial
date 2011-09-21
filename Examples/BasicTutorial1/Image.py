@@ -32,36 +32,36 @@ image.GetSize()
 # <demo> --- stop ---
 
 # Individual demensions
-image.GetWidth()
-image.GetHeight()
-image.GetDepth()
+print image.GetWidth()
+print image.GetHeight()
+print image.GetDepth()
 
 # <demo> --- stop ---
 
 # Origin and Spacing
-image.GetOrigin()
-image.GetSpacing()
+print image.GetOrigin()
+print image.GetSpacing()
 
 # <demo> --- stop ---
 
 # Pixel type
-image.GetPixelIDValue()
-image.GetPixelIDTypeAsString()
+print image.GetPixelIDValue()
+print image.GetPixelIDTypeAsString()
 
 # <demo> --- stop ---
 
 # Addressing pixels, details in the presentation
-image.GetPixel ( 0, 0, 0 )
+print image.GetPixel ( 0, 0, 0 )
 image.SetPixel ( 0, 0, 0, 1 )
-image.GetPixel ( 0, 0, 0 )
+print image.GetPixel ( 0, 0, 0 )
 print "Back to presentation"
 
 # <demo> --- stop ---
 
 # Addressing pixels the easier way, details in the presentation
-image[0,0,0]
+print image[0,0,0]
 image[0,0,0] = 10
-image[0,0,0]
+print image[0,0,0]
 print "Back to presentation"
 
 # <demo> --- stop ---
