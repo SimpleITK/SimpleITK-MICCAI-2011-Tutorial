@@ -90,6 +90,7 @@ sitk.Show ( sitk.Flip ( image ), "Flipped" )
 
 # <demo> stop
 
+
 # Canny edges
 sitk.Show ( sitk.CannyEdgeDetection ( sitk.Cast ( image, sitk.sitkFloat32 ) ), "Canny" )
 
