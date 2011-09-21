@@ -15,3 +15,5 @@ def FiltersDemo ():
 def MorphologyDemo ():
     return ipd.ClearIPDemo ( 'BasicTutorial2/Morphology.py' )
 
+def MeasureRegionsDemo ():
+    return ipd.ClearIPDemo ( 'InteractiveTutorial/MeasureRegions.py' )
