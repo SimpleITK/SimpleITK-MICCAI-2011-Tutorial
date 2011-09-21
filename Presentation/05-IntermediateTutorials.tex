@@ -151,20 +151,131 @@ To iPython (\texttt{Examples/BasicTutorial2/InteractiveTutorial/05-02-Numpy.py})
 %
 
 \subsection{Feature Detection}
-\begin{frame}{Edge Detection}
+
+
+\begin{frame}[fragile]
+\frametitle{More Data To Interact With}
+\lstpython
+\begin{lstlisting}
+# Read image, using ipython's tab auto-complete
+image = sitk.ReadImage( ``~/SimpleITK-MICCAI-2011-Tutorial/iasem-mito.nrrd'' )
+
+# Get familiar with the image
+print image
+...
+sitk.Show( image )
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}{Image Derivatives}
+\begin{frame}[fragile]
+\frametitle{Edge Detection} 
+
+\begin{itemize}
+  \item {\bf CannyEdgeDetection}
+\begin{lstlisting}
+    Image CannyEdgeDetection ( const Image& ,
+      double inLowerThreshold = 0.0,
+      double inUpperThreshold = 0.0,
+      std::vector<double> inVariance = std::vector<double>(3, 0.0),
+      std::vector<double> inMaximumError = std::vector<double>(3, 0.01) );
+\end{lstlisting}
+  \item {\bf SobelEdgeDetection }
+\begin{lstlisting}
+    Image SobelEdgeDetection ( const Image&  );
+\end{lstlisting}
+  \item {\bf ZeroCrossingBasedEdge }
+\begin{lstlisting}
+    Image ZeroCrossingBasedEdgeDetection ( const Image& ,
+      double inVariance = 1,
+      uint8_t inForegroundValue = 1u,
+      uint8_t inBackgroundValue = 0u,
+      double inMaximumError = 0.1 );
+\end{lstlisting}
+  \item {\bf GradientMagnitudeRecursiveGaussian }
+\begin{lstlisting}
+    Image GradientMagnitudeRecursiveGaussian ( const Image& ,
+      double inSigma = 1.0,
+      bool inNormalizeAcrossScale = false );
+\end{lstlisting}
+\end{itemize}
+
 \end{frame}
 
-\begin{frame}{Zero Crossing}
+
+\begin{frame}[fragile]
+\frametitle{Image Derivatives}
+
+\begin{itemize}
+  \item {\bf Derivative}
+\begin{lstlisting}
+    Image Derivative ( const Image& ,
+      unsigned int inDirection = 0u,
+      unsigned int inOrder = 1u,
+      bool inUseImageSpacing = true );
+\end{lstlisting}
+  \item {\bf RecursiveGaussian}
+\begin{lstlisting}
+    Image RecursiveGaussian ( const Image& ,
+      double inSigma = 1.0,
+      bool inNormalizeAcrossScale = false,
+      itk::simple::RecursiveGaussianImageFilter::OrderEnumType inOrder = itk::simple::RecursiveGaussianImageFilter::ZeroOrder,
+      unsigned int inDirection = 0u );
+\end{lstlisting}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Zero Crossing}
+  
+
+\begin{itemize}
+  \item {\bf ZeroCrossing }
+\begin{lstlisting}
+    Image ZeroCrossing ( const Image& ,
+      uint8_t inForegroundValue = 1u,
+      uint8_t inBackgroundValue = 0u );
+\end{lstlisting}
+\end{itemize}
+
 \end{frame}
 
 
-\begin{frame}{Ridge Detection Problem}
+\begin{frame}{Ridge and Valley Detection Problem}
+
+Where $g(x;t)$ is a Gaussian function:\\
+\center
+\begin{center}
+$g(x;t) = \frac{ 1 }{ \sqrt{ 2 t \pi } } e^{ \left( - \frac{x^2}{ 2 t} \right) }$ \\
+\end{center}
+Let $L$ denote a scale-space representaton of an image $I$:\\
+\center
+\begin{center}
+$L(x,y;t) = = g(x,y; t) \ast I(x,y)$\\
+\end{center}
+And then $L_x$ is the partial derivative of the scale-space
+representation of $I$ with respect  to $x$. Derivatives can also be
+taken in other, directions. If $v$ is a direction parallell to image
+gradient, then the following  defines a ridge:\\
+\center
+\begin{center}
+$L_{uv} = 0, L_{uu}^2-L^2_{vv} \ge 0$
+\end{center}
+
+Where these directional derivatives have the following properties:
+\center
+\begin{center}
+$L_v^2L_{uu}=L_x^2L_{yy}-2L_xL_yL_{xy}+L_y^2L_{xx},$\\
+$L_v^2L_{uv}=L_xL_y(L_{xx}-L_{yy}) - (L_x^2-L_y^2)L_{xy},$\\
+$L_v^2L_{vv}=L_x^2L_{xx}+2L_xL_yL_{xy} +L_y^2L_{yy}$\\
+\end{center}
+
+This view of the Ridge Detection if taken from Tony Lindeberg's works.
+
 \end{frame}
 
-\begin{frame}{Ridge Detection Solution}
+\begin{frame}{Ridge Detection Example}
+To iPython (\texttt{Examples/BasicTutorial2/InteractiveTutorial/05-04-RidgeDetection.py})
 \end{frame}
 
 
