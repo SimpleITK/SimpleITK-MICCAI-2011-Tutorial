@@ -7,7 +7,7 @@ import numpy as np
 
 # <demo> stop
 import os
-dataDir = os.environ["HOME"] + "/Source/SimpleITK-MICCAI-2011-Tutorial"
+dataDir = os.environ["HOME"] + "/SimpleITK-MICCAI-2011-Tutorial"
 image = sitk.ReadImage ( dataDir + "/iasem-cells.nrrd" )
 
 # <demo> stop

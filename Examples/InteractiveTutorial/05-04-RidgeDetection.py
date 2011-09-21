@@ -6,7 +6,7 @@ import SimpleITK as sitk
 
 # <demo> stop
 import os
-dataDir = os.environ["HOME"] + "/Source/SimpleITK-MICCAI-2011-Tutorial"
+dataDir = os.environ["HOME"] + "/SimpleITK-MICCAI-2011-Tutorial"
 image = sitk.ReadImage ( dataDir + "/iasem-mito.nrrd" )
 sitk.Show ( image, "Slice" )
 
