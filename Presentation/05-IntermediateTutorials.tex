@@ -7,11 +7,13 @@
 % which uses the prior filters for them to solve.
 %
 
-\begin{frame}
-\frametitle{True utility of SimpleITK}
-\begin{itemize}
-\item Interacting with data
-\end{itemize}
+\subsection{Example}
+\begin{frame}{Hands On}
+\fontsize{36pt}{36pt}\selectfont
+\center
+\begin{center}
+Interactive Sessions
+\end{center}
 \end{frame}
 
 \subsection{Threshold-based Segmentation}
@@ -93,21 +95,29 @@ sitk.Show( .5*image*~mask+image*mask )
 \end{frame}
 
 \begin{frame}{Change Border Problem}
-
-After registration a border of the average intensity was added. Change this border to 0.
-
+Problem:
+\begin{itemize}
+  \item Registration leaves a border in the image
+  \item Border value is average intensity
+  \item Change to 0
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Change Border Solution}
-To iPython (\texttt{Examples/BasicTutorial2/InteractiveTutorial/05-01-BoarderChange.py})
+To iPython (\texttt{Examples/InteractiveTutorial/05-01-BorderChange.py})
 \end{frame}
 
 \subsection{Numpy Interface}
 \begin{frame}[fragile]
 \frametitle{SimpleITK with Numpy}
 
-Functions to interface SimpleITK with numpy:
+Numpy is:
+\begin{itemize}
+  \item Python's universal numerics foundation
+  \item Provides high performance basic linear algebra
+\end{itemize}
 
+numpy interface functions:
 \lstpython
 \begin{lstlisting}
 def GetArrayFromImage(image):
@@ -124,34 +134,111 @@ def GetImageFromArray( arr ):
 \end{frame}
 
 \begin{frame}{Python Example}
-To iPython (\texttt{Examples/BasicTutorial2/InteractiveTutorial/05-02-Numpy.py})
+To iPython (\texttt{Examples/InteractiveTutorial/05-02-Numpy.py})
 \end{frame}
-
-%
-% Begin Section For Hans
-%
 
 \subsection{Image Measurements}
-\begin{frame}{Image Statistics}
+
+\begin{frame}{Image Measurements}
+\fontsize{36pt}{36pt}\selectfont
+\center
+\begin{center}
+Image Measurements
+\end{center}
 \end{frame}
 
-\begin{frame}{Label Statistics}
+\begin{frame}{The Scenerio}
+\begin{center}
+  \includegraphics[width=0.3\textwidth]{Images/T1}
+  \includegraphics[width=0.3\textwidth]{Images/LB}
+  \includegraphics[width=0.3\textwidth]{Images/FA}
+\end{center}
+
+\begin{itemize}
+  \item You collected 1000 Diffusion Weighted Imaging scan sessions
+  \item Now, compute the fractional anisotropy measures for a set of anatomical regions
+\end{itemize}
 \end{frame}
 
-
-\begin{frame}{Statistics Problem}
+\begin{frame}{Python Example}
+To iPython (\texttt{Examples/InteractiveTutorial/MeasureRegions.py})
 \end{frame}
 
-\begin{frame}{Statistics Solution}
-\end{frame}
+% \begin{frame}[fragile]{Label Statistics}
+% \lstpython
+% \begin{lstlisting}
+% import SimpleITK as sitk
+% import csv
+% # Load the Images to be measured
+% ScalarValuesFile = '~/SimpleITK-MICCAI-2011-Tutorial/FA.png'
+% ScalarValuesImage = sitk.Cast( sitk.ReadImage(ScalarValuesFile), sitk.sitkUInt32 )
+
+% LabelMapFile = '~/SimpleITK-MICCAI-2011-Tutorial/LB.png'
+% LabelMapImage = sitk.Cast( sitk.ReadImage(LabelMapFile), sitk.sitkUInt32 )
+
+% lsfilter = sitk.LabelStatisticsImageFilter()
+% lsfilter.Execute(LabelMapImage,ScalarValuesImage)
+% keys = lsfilter.GetValidLabels()
+
+% \end{lstlisting}
+% \end{frame}
 
 
-%
-% End Section For Hans
-%
+% \begin{frame}[fragile]{Export Data Table }
+% \lstpython
+% \begin{lstlisting}
+% ### Now extract measurement values to cataloging in a database/spreadsheet
+% MySubjectID=``Subj01''
+% measurementDict=dict()
+% for labelValue in keys:
+%   uniqueId = ( MySubjectID, labelValue )
+%   measurementMap=lsfilter.GetMeasurementMap(labelValue)
+%   measurementDict[uniqueId]=dict( measurementMap )
+
+% print("DUMPING MEASUREMENT DICTIONARY")
+% print(measurementDict)
+% #A map between internal labels and header row strings.
+% headerMap={'SUBJID':'SubjectID',
+%            'LABELID':'LabelID',
+%            'Variance':'Variance',
+%            'Minimum':'Minimum',
+%            'Maximum':'Maximum',
+%            'Mean':'Mean',
+%            'Count':'NumPixels',
+%            'approxMedian':'Median',
+%            'Sum':'Sum',
+%            'Sigma':'Sigma'}
+
+% \end{lstlisting}
+% \end{frame}
+
+% \begin{frame}[fragile]{Export Data Table }
+% \lstpython
+% \begin{lstlisting}
+
+% csvFileName="MyValues.csv"
+% csvFile=open(csvFileName, 'wb')
+% myDictWriter=csv.DictWriter(csvFile,headerMap.keys())
+% myDictWriter.writerow(headerMap)
+% for uniqueId in measurementDict.keys():
+%   unrollRow = measurementDict[uniqueId]
+%   unrollRow['SUBJID']=uniqueId[0]
+%   unrollRow['LABELID']=uniqueId[1]
+%   myDictWriter.writerow(unrollRow)
+% csvFile.close()
+
+% \end{lstlisting}
+% \end{frame}
 
 \subsection{Feature Detection}
 
+\begin{frame}{Feature Detection}
+\fontsize{36pt}{36pt}\selectfont
+\center
+\begin{center}
+Feature Detection
+\end{center}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{More Data To Interact With}
@@ -241,41 +328,43 @@ sitk.Show( image )
 \end{frame}
 
 
-\begin{frame}{Ridge and Valley Detection Problem}
+\begin{frame}[fragile]
+\frametitle{Ridge and Valley Detection Problem}
 
 Where $g(x;t)$ is a Gaussian function:\\
 \center
-\begin{center}
-$g(x;t) = \frac{ 1 }{ \sqrt{ 2 t \pi } } e^{ \left( - \frac{x^2}{ 2 t} \right) }$ \\
-\end{center}
+\begin{equation}
+g(x;t) = \frac{ 1 }{ \sqrt{ 2 t \pi } } e^{ \left( - \frac{x^2}{ 2 t} \right) }
+\end{equation}
 Let $L$ denote a scale-space representaton of an image $I$:\\
-\center
-\begin{center}
-$L(x,y;t) = = g(x,y; t) \ast I(x,y)$\\
-\end{center}
+\begin{equation}
+L(x,y;t) = g(x,y; t) \ast I(x,y)
+\end{equation}
 And then $L_x$ is the partial derivative of the scale-space
-representation of $I$ with respect  to $x$. Derivatives can also be
-taken in other, directions. If $v$ is a direction parallell to image
-gradient, then the following  defines a ridge:\\
-\center
-\begin{center}
-$L_{uv} = 0, L_{uu}^2-L^2_{vv} \ge 0$
-\end{center}
+representation of $I$ with respect  to $x$. 
+\end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Ridge and Valley Detection Problem (continued)}
+Derivatives can also be
+taken in other, directions. If $v$ is a direction parallel to image
+gradient, then the following  defines a ridge:
+\begin{equation}
+L_{uv} = 0, L_{uu}^2-L^2_{vv} \ge 0
+\end{equation}
 Where these directional derivatives have the following properties:
-\center
-\begin{center}
-$L_v^2L_{uu}=L_x^2L_{yy}-2L_xL_yL_{xy}+L_y^2L_{xx},$\\
-$L_v^2L_{uv}=L_xL_y(L_{xx}-L_{yy}) - (L_x^2-L_y^2)L_{xy},$\\
-$L_v^2L_{vv}=L_x^2L_{xx}+2L_xL_yL_{xy} +L_y^2L_{yy}$\\
-\end{center}
+\begin{align}
+L_v^2L_{uu}&=L_x^2L_{yy}-2L_xL_yL_{xy}+L_y^2L_{xx},\\
+L_v^2L_{uv}&=L_xL_y(L_{xx}-L_{yy}) - (L_x^2-L_y^2)L_{xy},\\
+L_v^2L_{vv}&=L_x^2L_{xx}+2L_xL_yL_{xy} +L_y^2L_{yy}
+\end{align}
 
 This view of the Ridge Detection if taken from Tony Lindeberg's works.
 
 \end{frame}
 
 \begin{frame}{Ridge Detection Example}
-To iPython (\texttt{Examples/BasicTutorial2/InteractiveTutorial/05-04-RidgeDetection.py})
+To iPython (\texttt{Examples/InteractiveTutorial/05-04-RidgeDetection.py})
 \end{frame}
 
 

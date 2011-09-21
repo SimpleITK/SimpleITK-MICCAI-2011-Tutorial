@@ -17,3 +17,13 @@ def MorphologyDemo ():
 
 def MeasureRegionsDemo ():
     return ipd.ClearIPDemo ( 'InteractiveTutorial/MeasureRegions.py' )
+
+def BorderChangeDemo ():
+    return ipd.ClearIPDemo ( 'InteractiveTutorial/05-01-BorderChange.py' )
+
+def NumpyDemo ():
+    return ipd.ClearIPDemo ( 'InteractiveTutorial/05-02-Numpy.py' )
+
+def RidgeDetectionDemo ():
+    return ipd.ClearIPDemo ( 'InteractiveTutorial/05-04-RidgeDetection.py' )
+

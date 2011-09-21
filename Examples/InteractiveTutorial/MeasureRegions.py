@@ -1,8 +1,6 @@
 import SimpleITK as sitk
 import csv
 
-# <demo> auto
-
 # Load the Images to be measured
 ScalarValuesFile = '~/SimpleITK-MICCAI-2011-Tutorial/Data/FA.png'
 ScalarValuesImage = sitk.Cast( sitk.ReadImage(ScalarValuesFile), sitk.sitkUInt32 )
@@ -32,6 +30,9 @@ for labelValue in keys:
 
 print("DUMPING MEASUREMENT DICTIONARY")
 print(measurementDict)
+
+# <demo> stop
+
 #A map between internal labels and header row strings.
 headerMap={'SUBJID':'SubjectID',
            'LABELID':'LabelID',
@@ -43,8 +44,6 @@ headerMap={'SUBJID':'SubjectID',
            'approxMedian':'Median',
            'Sum':'Sum',
            'Sigma':'Sigma'}
-
-# <demo> stop
 
 csvFileName="MyValues.csv"
 csvFile=open(csvFileName, 'wb')
