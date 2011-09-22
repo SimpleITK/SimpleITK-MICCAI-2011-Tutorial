@@ -31,7 +31,7 @@ print image
 sitk.Show( image )
 \end{lstlisting}
 \begin{itemize}
-  \item ``Dual-Beam'' or Ion-Abrasion Scanning Electron Microscope
+  \item ``Dual-Beam'' or Ion-Abrasion Scanning Electron Microscopy
   \item Heavily pre-proccessed
   \item  X-Z cross-section of a 3D volume
 \end{itemize}
@@ -42,9 +42,9 @@ Image masks are just SimpleITK Images
 \begin{itemize}
   \item Follow some conventions
   \item Pixel type of \texttt{uint8\_t}
-  \item 0-value is background, 1-value being the foreground
+  \item 0-value is background, 1-value is the foreground
   \item Masks are used for output of thresholding, binary morphology, etc\dots
-  \item The 1-value was choosen to each of computataion with operators
+  \item The 1-value was choosen to ease of computation with operators
   \item If a mask needs to be directly shown, multiply by 255
 \end{itemize}
 \end{frame}
