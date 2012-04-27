@@ -1,6 +1,7 @@
 #include <SimpleITK.h>
 #include <itkMirrorPadImageFilter.h>
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 

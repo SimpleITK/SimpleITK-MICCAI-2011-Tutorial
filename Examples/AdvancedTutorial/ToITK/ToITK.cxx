@@ -2,6 +2,7 @@
 
 #include <SimpleITK.h>
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 
