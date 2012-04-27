@@ -1,4 +1,5 @@
 #include <SimpleITK.h>
+#include <cstdlib>
 namespace sitk = itk::simple;
 int main ( int argc, char* argv[] ) {
   // Read the image file

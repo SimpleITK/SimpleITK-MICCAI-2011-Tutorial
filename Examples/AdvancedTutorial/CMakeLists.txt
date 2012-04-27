@@ -13,6 +13,7 @@ if(OpenCV_FOUND)
   include_directories(${OpenCV_INCLUDE_DIRS})
 endif()
 
+add_subdirectory ( SimpleGaussian )
 add_subdirectory ( ToITK )
 add_subdirectory ( ToOpenCV )
 add_subdirectory ( ToOpenCVAndBack )
