@@ -6,7 +6,7 @@ import SimpleITK as sitk
 
 # Find some data
 import os
-dataDir = os.environ["HOME"] + "/Source/SimpleITK/Testing/Data/Input"
+dataDir = os.environ["HOME"] + "/src/SimpleITK/Testing/Data/Input"
 image = sitk.ReadImage ( dataDir + "/WhiteDots.png" )
 # Convert to 0 and 1, if you can't see it, check window/level!
 image = sitk.BinaryThreshold ( image, 0, 256, 0, 1 )

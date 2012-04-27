@@ -10,7 +10,7 @@ import SimpleITK as sitk
 
 # Find some data
 import os
-dataDir = os.environ["HOME"] + "/Source/SimpleITK/Testing/Data/Input"
+dataDir = os.environ["HOME"] + "/src/SimpleITK/Testing/Data/Input"
 image = sitk.ReadImage ( dataDir + "/RA-Short.nrrd" )
 sitk.Show ( image )
 
