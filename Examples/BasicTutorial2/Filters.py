@@ -70,7 +70,6 @@ sitk.Show ( sitk.Shrink ( image, [2,2,2] ), "Shrunk" )
 size = [64, 64, 1]
 start = [64, 0, 0]
 sitk.Show ( sitk.Extract ( image, size, start ), "Extracted" )
-# Back to presentation
 
 # <demo> stop
 

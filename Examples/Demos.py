@@ -1,5 +1,12 @@
 import IPython.lib.demo as ipd
 
+# To use, run ipython, then
+#
+# In [1]: %run Demos.py
+# In [2]: d = ImageDemo()
+# In [3]: d()
+# In [4]: d()
+
 def ImageDemo ():
     return ipd.ClearIPDemo ( 'BasicTutorial1/Image.py' )
 

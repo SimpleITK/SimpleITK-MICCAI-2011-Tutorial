@@ -22,7 +22,6 @@ sitk.Show ( sitk.BinaryErode ( image ), "Eroded" )
 # Hmm, can we visualize better?  Zoom in to see...
 # Use pixel-wise operators
 sitk.Show ( 127 * image + 127 * sitk.BinaryErode ( image ), "ThinErosion" )
-# Explanation in Presentation
 
 # <demo> --- stop ---
 

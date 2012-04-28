@@ -8,11 +8,10 @@ import SimpleITK as sitk
 
 # <demo> --- stop ---
 
-# Create an image, details in the presentation
+# Create an image
 image = sitk.Image ( 256, 128, 64, sitk.sitkInt16 );
 # How about 2d?
 twoD = sitk.Image ( 64, 64, sitk.sitkFloat32 )
-print "Back to slides"
 
 # <demo> --- stop ---
 
@@ -54,7 +53,6 @@ print image.GetPixelIDTypeAsString()
 print image.GetPixel ( 0, 0, 0 )
 image.SetPixel ( 0, 0, 0, 1 )
 print image.GetPixel ( 0, 0, 0 )
-print "Back to presentation"
 
 # <demo> --- stop ---
 
@@ -62,6 +60,5 @@ print "Back to presentation"
 print image[0,0,0]
 image[0,0,0] = 10
 print image[0,0,0]
-print "Back to presentation"
 
 # <demo> --- stop ---
