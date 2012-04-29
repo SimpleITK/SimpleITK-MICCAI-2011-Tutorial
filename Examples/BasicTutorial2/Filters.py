@@ -52,7 +52,7 @@ sitk.Show ( sitk.Flip ( image ), "Flipped" )
 # <demo> stop
 
 # Canny edges
-sitk.Show ( sitk.CannyEdgeDetection ( image ), "Canny" )
+sitk.Show ( sitk.CannyEdgeDetection ( sitk.Cast(image, sitk.sitkFloat32) ), "Canny" )
 
 # <demo> stop
 
@@ -63,13 +63,6 @@ sitk.Show ( sitk.LaplacianSharpening ( image ), "Sharp" )
 
 # Shrink
 sitk.Show ( sitk.Shrink ( image, [2,2,2] ), "Shrunk" )
-
-# <demo> stop
-
-# Extract
-size = [64, 64, 1]
-start = [64, 0, 0]
-sitk.Show ( sitk.Extract ( image, size, start ), "Extracted" )
 
 # <demo> stop
 
@@ -89,7 +82,6 @@ sitk.Show ( sitk.Flip ( image ), "Flipped" )
 
 # <demo> stop
 
-
 # Canny edges
 sitk.Show ( sitk.CannyEdgeDetection ( sitk.Cast ( image, sitk.sitkFloat32 ) ), "Canny" )
 
@@ -97,10 +89,5 @@ sitk.Show ( sitk.CannyEdgeDetection ( sitk.Cast ( image, sitk.sitkFloat32 ) ), "
 
 # Sharpen
 sitk.Show ( sitk.LaplacianSharpening ( image ), "Sharp" )
-
-# <demo> stop
-
-# Shrink
-sitk.Show ( sitk.Shrink ( image ), [2,2,2] )
 
 # <demo> stop

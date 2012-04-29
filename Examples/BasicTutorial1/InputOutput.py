@@ -44,6 +44,6 @@ sitk.Show ( image )
 # <demo> --- stop ---
 
 # Output, set ITK for valid output formats
-sitk.WriteImage ( image, "/home/tutorial/Example.nii" )
+sitk.WriteImage ( image, "/tmp/Example.nii" )
 
 # And go load it into ImageJ/Fiji
